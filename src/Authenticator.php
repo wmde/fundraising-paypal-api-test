@@ -9,17 +9,17 @@ use GuzzleHttp\Client;
 class Authenticator {
 
 	private TokenCache $tokenCache;
+	private Client $client;
 	private string $authEndpoint;
 	private string $clientId;
 	private string $secret;
-	private Client $client;
 
-	public function __construct( TokenCache $tokenCache, string $apiEndpoint, string $clientId, string $secret, Client $client ) {
+	public function __construct( TokenCache $tokenCache, Client $client, string $apiEndpoint, string $clientId, string $secret ) {
 		$this->tokenCache = $tokenCache;
+		$this->client = $client;
 		$this->authEndpoint = $apiEndpoint;
 		$this->clientId = $clientId;
 		$this->secret = $secret;
-		$this->client = $client;
 	}
 
 	public function getToken(): string {

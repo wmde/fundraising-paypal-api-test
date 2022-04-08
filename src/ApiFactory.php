@@ -15,6 +15,8 @@ class ApiFactory {
 	private array $config;
 	private ?Client $client = null;
 
+	private ?Authenticator $authenticator = null;
+
 	/**
 	 * @param array{client_id: string, secret: string} $config
 	 */
@@ -30,13 +32,25 @@ class ApiFactory {
 		return $this->client;
 	}
 
-	public function newAuthenticator(): Authenticator {
-		return new Authenticator(
-			new FileBasedTokenCache( __DIR__ . '/../token.json' ),
-			Endpoints::AUTH,
-			$this->config['client_id'],
-			$this->config['secret'],
-			$this->getClient()
+	public function getAuthenticator(): Authenticator {
+		if($this->authenticator === null) {
+			$this->authenticator = new Authenticator(
+				new FileBasedTokenCache( __DIR__ . '/../token.json' ),
+				$this->getClient(),
+				Endpoints::AUTH,
+				$this->config['client_id'],
+				$this->config['secret']
+			);
+		}
+
+		return $this->authenticator;
+	}
+
+	public function newOrderCreator(): OrderCreator {
+		return new OrderCreator(
+			$this->getClient(),
+			$this->getAuthenticator()->getToken(),
+			Endpoints::ORDERS
 		);
 	}
 }
