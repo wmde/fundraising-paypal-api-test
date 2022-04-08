@@ -1,8 +1,18 @@
 version: '3.4'
 
 services:
+    web:
+        image: nginx:latest
+        ports:
+            - "8008:80"
+        volumes:
+            - ./build/web/conf.d:/etc/nginx/conf.d
+            - ./:/usr/src/app
+        depends_on:
+            - app
+
     app:
-        image: php:8.1-alpine
+        image: php:8.1-fpm
         volumes:
             - ./:/usr/src/app
-        working_dir: /usr/src/app
+        working_dir: /usr/src/app/public

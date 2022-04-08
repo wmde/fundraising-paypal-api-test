@@ -49,7 +49,6 @@ class ApiFactory {
 	public function newOrderCreator(): OrderCreator {
 		return new OrderCreator(
 			$this->getClient(),
-			$this->getAuthenticator()->getToken(),
 			Endpoints::ORDERS
 		);
 	}
