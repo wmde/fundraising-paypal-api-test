@@ -8,5 +8,5 @@ interface WebhookLogger {
 
 	public function getLog( string $id ): ?array;
 
-	public function storeLog( string $id, string $data ): void;
+	public function storeLog( string $id, array $data ): void;
 }

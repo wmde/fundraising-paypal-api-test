@@ -10,7 +10,7 @@ namespace WMDE\ApiTestKit\Tests;
 class AuthenticatorTest extends ApiTest {
 
 	public function testAuthenticatorReturnsToken(): void {
-		$authenticator = $this->factory->getAuthenticator();
+		$authenticator = $this->factory->newAuthenticator();
 
 		$token = $authenticator->getToken();
 

@@ -12,5 +12,6 @@ $dotenv->safeLoad();
 
 return new ApiFactory( [
 	'client_id' => $_ENV['CLIENT_ID'],
-	'secret' => $_ENV['SECRET']
+	'secret' => $_ENV['SECRET'],
+	'base_url' => $_ENV['BASE_URL']
 ] );

@@ -8,7 +8,7 @@ use WMDE\ApiTestKit\ApiFactory;
  * @var ApiFactory $factory
  */
 $factory = include_once __DIR__ . '/../src/bootstrap.php';
-$authenticator = $factory->getAuthenticator();
+$authenticator = $factory->newAuthenticator();
 $orderCreator = $factory->newOrderCreator();
 $url = $orderCreator->createOrderUrl( $authenticator->getToken() );
 

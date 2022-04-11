@@ -3,3 +3,5 @@ vendor
 composer.lock
 .phpunit.result.cache
 token.json
+logs/*
+!logs/index.html
