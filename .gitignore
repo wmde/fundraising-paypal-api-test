@@ -3,5 +3,6 @@ vendor
 composer.lock
 .phpunit.result.cache
 token.json
+plans.json
 logs/*
 !logs/index.html

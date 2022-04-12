@@ -15,6 +15,10 @@ class FileBasedTokenCache implements TokenCache {
 	}
 
 	public function getToken(): ?string {
+		if ( !file_exists( $this->filename ) ) {
+			return null;
+		}
+
 		try {
 			$json = file_get_contents( $this->filename );
 			$data = json_decode( $json, true );

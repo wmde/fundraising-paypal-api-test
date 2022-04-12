@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace WMDE\ApiTestKit;
 
 use GuzzleHttp\Client;
+use WMDE\ApiTestKit\services\FileBasedPlanIdStorage;
 use WMDE\ApiTestKit\services\FileBasedTokenCache;
 use WMDE\ApiTestKit\services\FileBasedWebhookLogger;
 
@@ -49,7 +50,33 @@ class ApiFactory {
 		);
 	}
 
+	public function newPlanCreator(): PlanCreator {
+		return new PlanCreator(
+			$this->getClient(),
+			Endpoints::PLANS
+		);
+	}
+
+	public function newProductCreator(): ProductCreator {
+		return new ProductCreator(
+			$this->getClient(),
+			Endpoints::PRODUCTS
+		);
+	}
+
+	public function newSubscriptionCreator(): SubscriptionCreator {
+		return new SubscriptionCreator(
+			$this->getClient(),
+			Endpoints::SUBSCRIPTIONS,
+			$this->config['base_url']
+		);
+	}
+
 	public function newLogger(): WebhookLogger {
 		return new FileBasedWebhookLogger( __DIR__ . '/../logs' );
+	}
+
+	public function newPlanIdStorage(): PlanIdStorage {
+		return new FileBasedPlanIdStorage( __DIR__ . '/../plans.json' );
 	}
 }

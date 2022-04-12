@@ -15,6 +15,10 @@ class FileBasedWebhookLogger implements WebhookLogger {
 	}
 
 	public function getLog( string $id ): ?array {
+		if ( !file_exists( $this->filename( $id ) ) ) {
+			return null;
+		}
+
 		try {
 			$json = file_get_contents( $this->filename( $id ) );
 			$data = json_decode( $json, true );
