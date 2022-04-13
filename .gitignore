@@ -4,5 +4,7 @@ composer.lock
 .phpunit.result.cache
 token.json
 plans.json
-logs/*
-!logs/index.html
+logs/webhooks/*
+logs/ipns/*
+!logs/webhooks/index.html
+!logs/ipns/index.html

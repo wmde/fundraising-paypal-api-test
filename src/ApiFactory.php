@@ -7,7 +7,7 @@ namespace WMDE\ApiTestKit;
 use GuzzleHttp\Client;
 use WMDE\ApiTestKit\services\FileBasedPlanIdStorage;
 use WMDE\ApiTestKit\services\FileBasedTokenCache;
-use WMDE\ApiTestKit\services\FileBasedWebhookLogger;
+use WMDE\ApiTestKit\services\FileBasedLogger;
 
 class ApiFactory {
 
@@ -72,8 +72,12 @@ class ApiFactory {
 		);
 	}
 
-	public function newLogger(): WebhookLogger {
-		return new FileBasedWebhookLogger( __DIR__ . '/../logs' );
+	public function newWebhookLogger(): Logger {
+		return new FileBasedLogger( __DIR__ . '/../logs/webhooks' );
+	}
+
+	public function newIPNLogger(): Logger {
+		return new FileBasedLogger( __DIR__ . '/../logs/ipns' );
 	}
 
 	public function newPlanIdStorage(): PlanIdStorage {
