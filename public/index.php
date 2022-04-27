@@ -14,6 +14,9 @@
 		<li></li>
 		<li><a href="/create-products.php">Create Products</a></li>
 		<li><a href="/create-plans.php">Create Payment Plans</a></li>
+		<li></li>
+		<li><a href="/list-ipns.php">List IPNs</a></li>
+		<li><a href="/list-webhooks.php">List Webhooks</a></li>
 	</ul>
 	</body>
 </html>

@@ -8,9 +8,9 @@ use WMDE\ApiTestKit\ApiFactory;
  * @var ApiFactory $factory
  */
 $factory = include_once __DIR__ . '/../src/bootstrap.php';
-$logger = $factory->newWebhookLogger();
+$logger = $factory->newIPNLogger();
 
-$data = $logger->getLog( filter_var( $_GET['id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS ) );
+$data = $logger->getLog( filter_var( $_GET['timestamp'], FILTER_SANITIZE_FULL_SPECIAL_CHARS ) );
 
 ?>
 
@@ -28,7 +28,7 @@ $data = $logger->getLog( filter_var( $_GET['id'], FILTER_SANITIZE_FULL_SPECIAL_C
 
 <?php else: ?>
 
-	<p>No Webhook has been logged yet, try reloading.</p>
+	<p>No IPN has been logged yet, try reloading.</p>
 
 <?php endif; ?>
 

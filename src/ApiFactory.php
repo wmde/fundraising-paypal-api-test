@@ -11,6 +11,9 @@ use WMDE\ApiTestKit\services\FileBasedLogger;
 
 class ApiFactory {
 
+	const IPN_LOG_DIRECTORY = __DIR__ . '/../logs/ipns';
+	const WEBHOOK_LOG_DIRECTORY = __DIR__ . '/../logs/webhooks';
+
 	/**
 	 * @var array{client_id: string, secret: string, base_url: string}
 	 */
@@ -73,14 +76,22 @@ class ApiFactory {
 	}
 
 	public function newWebhookLogger(): Logger {
-		return new FileBasedLogger( __DIR__ . '/../logs/webhooks' );
+		return new FileBasedLogger( self::WEBHOOK_LOG_DIRECTORY );
 	}
 
 	public function newIPNLogger(): Logger {
-		return new FileBasedLogger( __DIR__ . '/../logs/ipns' );
+		return new FileBasedLogger( self::IPN_LOG_DIRECTORY );
 	}
 
 	public function newPlanIdStorage(): PlanIdStorage {
 		return new FileBasedPlanIdStorage( __DIR__ . '/../plans.json' );
+	}
+
+	public function newIpnDirectoryList(): DirectoryList {
+		return new DirectoryList( self::IPN_LOG_DIRECTORY );
+	}
+
+	public function newWebhookDirectoryList(): DirectoryList {
+		return new DirectoryList( self::WEBHOOK_LOG_DIRECTORY );
 	}
 }

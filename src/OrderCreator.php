@@ -34,12 +34,13 @@ class OrderCreator {
 							'value' => '1000'
 						]
 					]
-				]
+				],
+				'return_url' => $this->baseUrl . '/confirmation.php?id=' . $data['id']
 			], $data )
 		] );
 
 		$data = json_decode( $response->getBody()->getContents(), true );
 
-		return $data['links'][1]['href'] . '?return=' . $this->baseUrl . '/confirmation.php?id=' . $data['id'];
+		return $data['links'][1]['href'];
 	}
 }
